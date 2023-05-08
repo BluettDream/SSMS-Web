@@ -52,8 +52,13 @@
           <span v-if="!loading">登 录</span>
           <span v-else>登 录 中...</span>
         </el-button>
-        <div style="float: right;" v-if="register">
-          <router-link class="link-type" :to="'/register'">立即注册</router-link>
+        <div class="footer">
+          <div v-if="register">
+            <router-link class="link-type" :to="'/faceLogin'">人脸登录</router-link>
+          </div>
+          <div v-if="register">
+            <router-link class="link-type" :to="'/register'">立即注册</router-link>
+          </div>
         </div>
       </el-form-item>
     </el-form>
@@ -180,6 +185,13 @@ getCookie();
     height: 39px;
     width: 14px;
     margin-left: 0px;
+  }
+  .footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
   }
 }
 .login-tip {
