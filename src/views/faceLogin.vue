@@ -1,11 +1,9 @@
 <template>
   <div class="face-login">
-    <el-form
-      class="face-login-form"
-    >
+    <el-form class="face-login-form">
       <h3 class="title">SSMS学生成绩管理系统</h3>
       <el-form-item style="width: 100%">
-        <Camera ref="cameraRef" :width="300" :height="250" />
+        <Camera ref="cameraRef" :width="300" :height="250" style="margin-left: 6%;" />
       </el-form-item>
       <el-form-item style="width: 100%">
         <el-button
@@ -33,8 +31,8 @@
 </template>
 
 <script setup>
-import { } from "@/api/login";
-import Camera from "@/components/Camera/index"
+import {} from "@/api/login";
+import Camera from "@/components/Camera/index";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
