@@ -1,6 +1,54 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
+      <el-form-item label="课程名称" prop="courseName">
+        <el-input
+          v-model="queryParams.courseName"
+          placeholder="请输入课程名称"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="学生编号" prop="userName">
+        <el-input
+          v-model="queryParams.userName"
+          placeholder="请输入学生编号"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="学生姓名" prop="nickName">
+        <el-input
+          v-model="queryParams.nickName"
+          placeholder="请输入学生姓名"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="学分" prop="credit">
+        <el-input
+          v-model="queryParams.credit"
+          placeholder="请输入学分"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="开始日期" prop="startTime">
+        <el-date-picker clearable
+          v-model="queryParams.startTime"
+          type="date"
+          value-format="YYYY-MM-DD"
+          placeholder="请选择开始日期">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="结束日期" prop="finishTime">
+        <el-date-picker clearable
+          v-model="queryParams.finishTime"
+          type="date"
+          value-format="YYYY-MM-DD"
+          placeholder="请选择结束日期">
+        </el-date-picker>
+      </el-form-item>
       <el-form-item label="分数" prop="score">
         <el-input
           v-model="queryParams.score"
@@ -60,6 +108,20 @@
     <el-table v-loading="loading" :data="scoreList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="分数ID" align="center" prop="scoreId" v-if="false"/>
+      <el-table-column label="学生编号" align="center" prop="userName" />
+      <el-table-column label="学生名称" align="center" prop="nickName" />
+      <el-table-column label="课程名称" align="center" prop="courseName" />
+      <el-table-column label="开始日期" align="center" prop="startTime" width="180">
+        <template #default="scope">
+          <span>{{ parseTime(scope.row.startTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="结束日期" align="center" prop="finishTime" width="180">
+        <template #default="scope">
+          <span>{{ parseTime(scope.row.finishTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="学分" align="center" prop="credit" />
       <el-table-column label="分数" align="center" prop="score" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template #default="scope">
@@ -80,6 +142,12 @@
     <!-- 添加或修改分数信息对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="scoreRef" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="课程编号" prop="courseId">
+          <el-input v-model="form.courseId" placeholder="请输入课程编号" />
+        </el-form-item>
+        <el-form-item label="学生编号" prop="userName">
+          <el-input v-model="form.userName" placeholder="请输入学生编号" />
+        </el-form-item>
         <el-form-item label="分数" prop="score">
           <el-input v-model="form.score" placeholder="请输入分数" />
         </el-form-item>
@@ -115,9 +183,21 @@ const data = reactive({
   queryParams: {
     pageNum: 1,
     pageSize: 10,
+    userName: undefined,
+    nickName: undefined,
+    courseName: undefined,
+    credit: undefined,
+    startTime: undefined,
+    finishTime: undefined,
     score: undefined,
   },
   rules: {
+    userName: [
+      { required: true, message: "学生编号不能为空", trigger: "blur" }
+    ],
+    courseId: [
+      { required: true, message: "课程编号不能为空", trigger: "blur" }
+    ],
     score: [
       { required: true, message: "分数不能为空", trigger: "blur" }
     ],
@@ -145,6 +225,13 @@ function cancel() {
 // 表单重置
 function reset() {
   form.value = {
+    courseId: null,
+    userName: null,
+    nickName: null,
+    courseName: null,
+    credit: null,
+    startTime: null,
+    finishTime: null,
     scoreId: null,
     score: null,
     delFlag: null,
