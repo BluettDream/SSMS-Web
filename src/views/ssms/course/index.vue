@@ -1,6 +1,22 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
+      <el-form-item label="教师编号" prop="userName">
+        <el-input
+          v-model="queryParams.userName"
+          placeholder="请输入教师编号"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="教师名称" prop="nickName">
+        <el-input
+          v-model="queryParams.nickName"
+          placeholder="请输入教师名称"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
       <el-form-item label="课程名称" prop="courseName">
         <el-input
           v-model="queryParams.courseName"
@@ -83,7 +99,8 @@
 
     <el-table v-loading="loading" :data="courseList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="课程ID" align="center" prop="courseId" v-if="false"/>
+      <el-table-column label="课程ID" align="center" prop="courseId" v-if="true"/>
+      <el-table-column label="教师姓名" align="center" prop="nickName" />
       <el-table-column label="课程名称" align="center" prop="courseName" />
       <el-table-column label="学分" align="center" prop="credit" />
       <el-table-column label="开始日期" align="center" prop="startTime" width="180">
@@ -115,6 +132,9 @@
     <!-- 添加或修改课程信息对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="courseRef" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="教师编号" prop="userName">
+          <el-input v-model="form.userName" placeholder="请输入教师编号" />
+        </el-form-item>
         <el-form-item label="课程名称" prop="courseName">
           <el-input v-model="form.courseName" placeholder="请输入课程名称" />
         </el-form-item>
@@ -169,12 +189,20 @@ const data = reactive({
   queryParams: {
     pageNum: 1,
     pageSize: 10,
+    userName: undefined,
+    nickName: undefined,
     courseName: undefined,
     credit: undefined,
     startTime: undefined,
     finishTime: undefined,
   },
   rules: {
+    courseId: [
+      { required: true, message: "课程ID不能为空", trigger: "blur" }
+    ],
+    userName: [
+      { required: true, message: "教师编号不能为空", trigger: "blur" }
+    ],
     courseName: [
       { required: true, message: "课程名称不能为空", trigger: "blur" }
     ],
@@ -212,6 +240,8 @@ function cancel() {
 function reset() {
   form.value = {
     courseId: null,
+    userName: null,
+    nickName: null,
     courseName: null,
     credit: null,
     startTime: null,
