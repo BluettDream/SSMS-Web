@@ -79,7 +79,7 @@
 
       <el-table v-loading="loading" :data="postList" @selection-change="handleSelectionChange">
          <el-table-column type="selection" width="55" align="center" />
-         <!-- <el-table-column label="岗位编号" align="center" prop="postId" /> -->
+         <el-table-column label="岗位编号" align="center" prop="postId" />
          <el-table-column label="岗位编码" align="center" prop="postCode" />
          <el-table-column label="岗位名称" align="center" prop="postName" />
          <el-table-column label="岗位排序" align="center" prop="postSort" />
