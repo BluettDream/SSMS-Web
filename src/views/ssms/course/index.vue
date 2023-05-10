@@ -256,8 +256,13 @@ function reset() {
 /** 搜索按钮操作 */
 function handleQuery() {
   queryParams.value.pageNum = 1;
-  queryParams.value.startTime = dateRange.value[0];
-  queryParams.value.finishTime = dateRange.value[1];
+  if(dateRange && dateRange.value !== null && dateRange.value.length > 0){
+    queryParams.value.startTime = dateRange.value[0];
+    queryParams.value.finishTime = dateRange.value[1];
+  }else{
+    queryParams.value.startTime = undefined;
+    queryParams.value.finishTime = undefined;
+  }
   getList();
 }
 

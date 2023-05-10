@@ -33,21 +33,16 @@
           @keyup.enter="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="开始日期" prop="startTime">
-        <el-date-picker clearable
-          v-model="queryParams.startTime"
-          type="date"
-          value-format="YYYY-MM-DD"
-          placeholder="请选择开始日期">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="结束日期" prop="finishTime">
-        <el-date-picker clearable
-          v-model="queryParams.finishTime"
-          type="date"
-          value-format="YYYY-MM-DD"
-          placeholder="请选择结束日期">
-        </el-date-picker>
+      <el-form-item label="课程时间" style="width: 308px;">
+        <el-date-picker
+            v-model="dateRange"
+            value-format="YYYY-MM-DD HH:mm:ss"
+            type="daterange"
+            range-separator="-"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :default-time="[new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 1, 1, 23, 59, 59)]"
+        ></el-date-picker>
       </el-form-item>
       <el-form-item label="分数" prop="score">
         <el-input
@@ -177,6 +172,7 @@ const single = ref(true);
 const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
+const dateRange = ref([]);
 
 const data = reactive({
   form: {},
@@ -246,11 +242,19 @@ function reset() {
 /** 搜索按钮操作 */
 function handleQuery() {
   queryParams.value.pageNum = 1;
+  if(dateRange && dateRange.value !== null && dateRange.value.length > 0){
+    queryParams.value.startTime = dateRange.value[0];
+    queryParams.value.finishTime = dateRange.value[1];
+  }else{
+    queryParams.value.startTime = undefined;
+    queryParams.value.finishTime = undefined;
+  }
   getList();
 }
 
 /** 重置按钮操作 */
 function resetQuery() {
+  dateRange.value = [];
   proxy.resetForm("queryRef");
   handleQuery();
 }
