@@ -3,7 +3,12 @@
     <el-form class="face-login-form">
       <h3 class="title">SSMS学生成绩管理系统</h3>
       <el-form-item style="width: 100%">
-        <Camera ref="cameraRef" :width="300" :height="250" style="margin-left: 6%;" />
+        <Camera
+          ref="cameraRef"
+          :width="300"
+          :height="250"
+          style="margin-left: 6%"
+        />
       </el-form-item>
       <el-form-item style="width: 100%">
         <el-button
@@ -31,12 +36,14 @@
 </template>
 
 <script setup>
-import {} from "@/api/login";
 import Camera from "@/components/Camera/index";
+import useUserStore from '@/store/modules/user'
 
+const userStore = useUserStore()
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 const loading = ref(false);
+const redirect = ref(undefined);
 
 let camera = null; // 摄像机对象,挂载组件时获取
 
@@ -44,15 +51,17 @@ function startDetect() {
   camera.captureImg((blob) => {
     loading.value = true;
     camera.stopCamera();
-    const formData = new FormData();
-    formData.append("file", blob);
-    console.log(formData.get("file"));
-    loading.value = false;
-    // 延时2秒
-    setTimeout(() => {
-      camera.startCamera();
-    }, 2000);
-  });
+    let formData = new FormData();
+    formData.append("faceImg", blob);
+    userStore.faceLogin(formData).then((res) => {
+      console.log(res);
+      router.push({ path: redirect.value || "/" });
+    }).catch((err) => {
+        console.log(err);
+        camera.startCamera();
+        loading.value = false;
+      }
+    )});
 }
 
 onMounted(() => {
@@ -63,7 +72,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   camera.destoryCamera();
 });
-
 </script>
 
 <style lang="scss" scoped>

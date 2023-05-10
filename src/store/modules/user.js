@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/login'
+import { login, logout, getInfo, faceLogin } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import defAva from '@/assets/images/profile.jpg'
 
@@ -21,6 +21,18 @@ const useUserStore = defineStore(
         const uuid = userInfo.uuid
         return new Promise((resolve, reject) => {
           login(username, password, code, uuid).then(res => {
+            setToken(res.data.token)
+            this.token = res.data.token
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
+        })
+      },
+      // 登录
+      faceLogin(formData) {
+        return new Promise((resolve, reject) => {
+          faceLogin(formData).then(res => {
             setToken(res.data.token)
             this.token = res.data.token
             resolve()

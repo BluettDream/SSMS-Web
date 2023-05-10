@@ -1,5 +1,16 @@
 import request from '@/utils/request'
 
+export function faceLogin(data){
+  return request({
+    url: '/faceLogin',
+    headers: {
+      isToken: false
+    },
+    method: 'post',
+    data: data
+  })
+}
+
 // 登录方法
 export function login(username, password, code, uuid) {
   const data = {
