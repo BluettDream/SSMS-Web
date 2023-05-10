@@ -19,11 +19,11 @@ const props = defineProps({
 });
 
 defineExpose({
-  captureImg,
+  captureImg, // 拍摄照片
   initCamera, // 初始化摄像头(使用时需要先调用)
-  startCamera,
-  stopCamera,
-  destoryCamera,
+  startCamera, // 开启摄像头
+  stopCamera, // 暂停摄像头
+  destoryCamera, // 销毁摄像头
 });
 
 /**
