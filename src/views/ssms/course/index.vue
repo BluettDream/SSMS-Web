@@ -103,7 +103,7 @@
 
     <el-table v-loading="loading" :data="courseList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="课程ID" align="center" prop="courseId" v-if="true"/>
+      <el-table-column label="课程编号" align="center" prop="courseId" v-if="true"/>
       <el-table-column label="教师姓名" align="center" prop="nickName" />
       <el-table-column label="课程名称" align="center" prop="courseName" />
       <el-table-column label="学分" align="center" prop="credit" />
@@ -254,7 +254,7 @@ const data = reactive({
   },
   rules: {
     courseId: [
-      { required: true, message: "课程ID不能为空", trigger: "blur" }
+      { required: true, message: "课程编号不能为空", trigger: "blur" }
     ],
     userName: [
       { required: true, message: "教师编号不能为空", trigger: "blur" }
