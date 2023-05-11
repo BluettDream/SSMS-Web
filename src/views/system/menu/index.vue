@@ -84,7 +84,7 @@
       </el-table>
 
       <!-- 添加或修改菜单对话框 -->
-      <el-dialog :title="title" v-model="open" width="680px" append-to-body>
+      <el-dialog draggable :title="title" v-model="open" width="680px" append-to-body>
          <el-form ref="menuRef" :model="form" :rules="rules" label-width="100px">
             <el-row>
                <el-col :span="24">

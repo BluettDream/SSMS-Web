@@ -156,7 +156,7 @@
     />
 
     <!-- 添加或修改OSS对象存储对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="ossRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="文件名">
           <fileUpload v-model="form.file" v-if="type === 0"/>

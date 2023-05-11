@@ -125,7 +125,7 @@
     />
 
     <!-- 添加或修改测试单表对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="demoRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="部门id" prop="deptId">
           <el-input v-model="form.deptId" placeholder="请输入部门id" />
@@ -159,7 +159,7 @@
       </template>
     </el-dialog>
     <!-- 用户导入对话框 -->
-    <el-dialog :title="upload.title" :visible.sync="upload.open" width="400px" append-to-body>
+    <el-dialog draggable :title="upload.title" :visible.sync="upload.open" width="400px" append-to-body>
       <el-upload
         ref="uploadRef"
         :limit="1"

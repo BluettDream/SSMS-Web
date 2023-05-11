@@ -107,7 +107,7 @@
     />
 
     <!-- 添加或修改对象存储配置对话框 -->
-    <el-dialog :title="title" v-model="open" width="800px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="800px" append-to-body>
       <el-form ref="ossConfigRef" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="配置key" prop="configKey">
           <el-input v-model="form.configKey" placeholder="请输入配置key" />

@@ -110,7 +110,7 @@
       />
 
       <!-- 添加或修改公告对话框 -->
-      <el-dialog :title="title" v-model="open" width="780px" append-to-body>
+      <el-dialog draggable :title="title" v-model="open" width="780px" append-to-body>
          <el-form ref="noticeRef" :model="form" :rules="rules" label-width="80px">
             <el-row>
                <el-col :span="12">

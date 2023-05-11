@@ -134,7 +134,7 @@
     />
 
     <!-- 添加或修改课程信息对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="courseRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="教师编号" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入教师编号" />
@@ -171,7 +171,7 @@
     </el-dialog>
 
     <!-- 课程导入对话框 -->
-    <el-dialog :title="upload.title" v-model="upload.open" width="400px" append-to-body>
+    <el-dialog draggable :title="upload.title" v-model="upload.open" width="400px" append-to-body>
          <el-upload
             ref="uploadRef"
             :limit="1"

@@ -144,7 +144,7 @@
     />
 
     <!-- 添加或修改分数信息对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="scoreRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="课程编号" prop="courseId">
           <el-input v-model="form.courseId" placeholder="请输入课程编号" />
@@ -165,7 +165,7 @@
     </el-dialog>
 
     <!-- 成绩导入对话框 -->
-    <el-dialog :title="upload.title" v-model="upload.open" width="400px" append-to-body>
+    <el-dialog draggable :title="upload.title" v-model="upload.open" width="400px" append-to-body>
          <el-upload
             ref="uploadRef"
             :limit="1"

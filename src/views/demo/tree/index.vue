@@ -75,7 +75,7 @@
     </el-table>
 
     <!-- 添加或修改测试树表对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog draggable :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="treeRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="父id" prop="parentId">
           <treeselect
