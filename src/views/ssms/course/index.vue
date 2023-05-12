@@ -258,8 +258,13 @@
         :auto-upload="false"
         drag
       >
-        <el-icon class="el-icon--upload"><upload-filled /></el-icon>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <el-icon
+          v-loading="waitResLoading"
+          element-loading-text="解析中..."
+          class="el-icon--upload"
+          ><upload-filled
+        /></el-icon>
+        <div v-show="!waitResLoading" class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <template #tip>
           <div class="el-upload__tip text-center">
             <div class="el-upload__tip">
@@ -313,6 +318,8 @@ const total = ref(0);
 const title = ref("");
 const isAdmin = ref(checkRole(["admin"]));
 const dateRange = ref([]);
+const waitResLoading = ref(false);
+
 /*** 课程导入参数 */
 const upload = reactive({
   // 是否显示弹出层（课程导入）
@@ -521,9 +528,11 @@ function importTemplate() {
 /**文件上传中处理 */
 const handleFileUploadProgress = (event, file, fileList) => {
   upload.isUploading = true;
+  waitResLoading.value = true;
 };
 /** 文件上传成功处理 */
 const handleFileSuccess = (response, file, fileList) => {
+  waitResLoading.value = false;
   upload.open = false;
   upload.isUploading = false;
   proxy.$refs["uploadRef"].handleRemove(file);
