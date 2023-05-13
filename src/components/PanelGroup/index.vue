@@ -10,8 +10,8 @@
           <div class="card-panel-text">全部课程</div>
           <count-to
             :startVal="0"
-            :endVal="userCourseCount"
-            :duration="3"
+            :endVal="courseCount"
+            :duration="2.5"
             class="card-panel-num"
           />
         </div>
@@ -26,8 +26,9 @@
           <div class="card-panel-text">最高分数</div>
           <count-to
             :startVal="0"
-            :endVal="userScoreMax"
-            :duration="3"
+            :endVal="scoreMax"
+            :duration="2.5"
+            :decimalPlaces="2"
             class="card-panel-num"
           />
         </div>
@@ -42,8 +43,9 @@
           <div class="card-panel-text">最低分数</div>
           <count-to
             :startVal="0"
-            :endVal="userScoreMin"
-            :duration="3"
+            :endVal="scoreMin"
+            :duration="2.5"
+            :decimalPlaces="2"
             class="card-panel-num"
           />
         </div>
@@ -58,8 +60,9 @@
           <div class="card-panel-text">平均分数</div>
           <count-to
             :startVal="0"
-            :endVal="userScoreAvg"
-            :duration="3"
+            :endVal="scoreAvg"
+            :duration="2.5"
+            :decimalPlaces="2"
             class="card-panel-num"
           />
         </div>
@@ -71,23 +74,25 @@
 
 <script setup name="PanelGroup">
 import CountTo from "vue-countup-v3";
-import {} from "@/api/ssms/scoreDashBoard"
 
-const { proxy } = getCurrentInstance();
-
-const userCourseCount = ref(0);
-const userScoreAvg = ref(0);
-const userScoreMax = ref(0);
-const userScoreMin = ref(0);
-
-function getPanelInfo(){
-  userCourseCount.value = 100
-  userScoreAvg.value = 80
-  userScoreMax.value = 85
-  userScoreMin.value = 78
-}
-
-getPanelInfo()
+defineProps({
+  courseCount: {
+    type: Number,
+    default: 0
+  },
+  scoreAvg: {
+    type: Number,
+    default: 0
+  },
+  scoreMax: {
+    type: Number,
+    default: 0
+  },
+  scoreMin: {
+    type: Number,
+    default: 0
+  }
+})
 </script>
 
 <style lang="scss" scoped>
