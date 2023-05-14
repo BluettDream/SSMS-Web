@@ -42,3 +42,12 @@ export function delScore(scoreId) {
     method: 'delete'
   })
 }
+
+// 查询分数面板
+export function getScorePanelInfo(query) {
+  return request({
+    url: '/ssms/score/panelInfo',
+    method: 'get',
+    params: query
+  })
+}
