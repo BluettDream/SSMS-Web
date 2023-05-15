@@ -8,6 +8,7 @@
 
 <script setup name="PieScoreChart">
 import { nextTick, onMounted } from "vue";
+import { wrap } from "@/utils/string";
 
 const props = defineProps({
   className: {
@@ -57,11 +58,13 @@ function setOption(data) {
     legend: {
       left: "center",
       top: "7%",
+      formatter: (value) => {return wrap(value,2,1,"...","");},
     },
     series: [
       {
         type: "pie",
         top: "18%",
+        selectedMode: 'single',
         radius: [0, "70%"],
         data: data,
         emphasis: {

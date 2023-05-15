@@ -4,9 +4,10 @@
  * @param {Number} charsPerLine 每行字数
  * @param {Number} maxLines 最大行数
  * @param {String} ellipsis 最后添加的字符串
+ * @param {String} tailChar 每行末尾添加的字符
  * @returns 字符串
  */
-export function wrap(str, charsPerLine = 2, maxLines = 2, ellipsis = "...") {
+export function wrap(str, charsPerLine = 2, maxLines = 2, ellipsis = "...", tailChar = "\n") {
   // 定义一个空字符串，用来存储处理后的结果
   let result = "";
   // 定义一个变量，用来记录换行符的个数
@@ -22,7 +23,7 @@ export function wrap(str, charsPerLine = 2, maxLines = 2, ellipsis = "...") {
     result += str.charAt(i);
     // 如果当前字符的索引值是奇数，就在结果字符串末尾添加一个换行符，并增加换行符的个数
     if (i % charsPerLine === 1) {
-      result += "\n";
+      result += tailChar;
       newlineCount++;
     }
   }

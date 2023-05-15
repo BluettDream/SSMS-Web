@@ -72,9 +72,7 @@ function setOption(data) {
           alignWithLabel: true,
         },
         axisLabel: {
-          formatter: function (value) {
-            return wrap(value);
-          },
+          formatter: (value) => {return wrap(value);},
         },
       },
     ],
