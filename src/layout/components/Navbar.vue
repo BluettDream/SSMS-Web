@@ -25,9 +25,9 @@
               <router-link to="/user/profile">
                 <el-dropdown-item>个人中心</el-dropdown-item>
               </router-link>
-              <el-dropdown-item command="setLayout">
+              <!-- <el-dropdown-item command="setLayout">
                 <span>布局设置</span>
-              </el-dropdown-item>
+              </el-dropdown-item> -->
               <el-dropdown-item divided command="logout">
                 <span>退出登录</span>
               </el-dropdown-item>
