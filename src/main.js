@@ -24,7 +24,7 @@ import './permission' // permission control
 
 import { useDict } from '@/utils/dict'
 import { getConfigKey, updateConfigByKey } from "@/api/system/config";
-import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels } from '@/utils/ruoyi'
+import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels } from '@/utils/bluett'
 
 // 分页组件
 import Pagination from '@/components/Pagination'

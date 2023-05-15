@@ -25,7 +25,7 @@ defineProps({
   }
 })
 
-const title = ref('RuoYi-Vue-Plus');
+const title = ref('Bluett-SSMS-WEB');
 const settingsStore = useSettingsStore();
 const sideTheme = computed(() => settingsStore.sideTheme);
 </script>

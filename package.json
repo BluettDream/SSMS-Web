@@ -1,8 +1,8 @@
 {
-  "name": "ruoyi-vue-plus",
+  "name": "bluett-web",
   "version": "4.6.0",
   "description": "SSMS学生成绩管理系统",
-  "author": "LionLi",
+  "author": "BluettDream",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/JavaLionLi/RuoYi-Vue-Plus-UI.git"
+    "url": "https://github.com/BluettDream/SSMS-Web.git"
   },
   "dependencies": {
     "@element-plus/icons-vue": "2.0.10",
